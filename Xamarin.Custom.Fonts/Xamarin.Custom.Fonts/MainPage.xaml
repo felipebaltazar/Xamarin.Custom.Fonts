@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xamarin.Custom.Fonts.MainPage">
+    <ContentPage.Resources>
+
+        <!-- "OnPlatform" de resultado string, para retornar a fonte regular de cada plataforma-->
+        <OnPlatform x:TypeArguments="x:String" x:Key="CustomFontRegular">
+            <On Platform="Android" Value="Orbitron-Regular.ttf#Orbitron Regular" />
+            <On Platform="iOS" Value="Orbitron-Regular" />
+        </OnPlatform>
+
+
+        <!-- "OnPlatform" de resultado string, para retornar a fonte bold de cada plataforma-->
+        <OnPlatform x:TypeArguments="x:String" x:Key="CustomFontBold">
+            <On Platform="Android" Value="Orbitron-Bold.ttf#Orbitron Bold" />
+            <On Platform="iOS" Value="Orbitron-Bold" />
+        </OnPlatform>
+
+        <!-- Estilo usado na label -->
+        <Style TargetType="Label" x:Key="MyLabelStyle">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            <Setter Property="FontFamily" Value="{StaticResource CustomFontRegular}"/>
+
+            <!-- Definimos um gatilho nesse estilo -->
+            <Style.Triggers>
+                <!-- Observando a propriedade FontAttriutes e disparando quando for bold -->
+                <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
+                    <!-- Alterando a fonte personalizada -->
+                    <Setter Property="FontFamily" Value="{StaticResource CustomFontBold}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Label Text="Welcome to Xamarin.Forms!"
+               Style="{StaticResource MyLabelStyle}"/>
+
+        <Label Text="Welcome to Xamarin.Forms!"
+               FontAttributes="Bold"
+               Style="{StaticResource MyLabelStyle}"/>
+        
+    </StackLayout>
+
+</ContentPage>
