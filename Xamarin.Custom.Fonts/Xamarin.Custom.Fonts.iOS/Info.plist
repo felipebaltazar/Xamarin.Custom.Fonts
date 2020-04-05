@@ -48,7 +48,7 @@
     <!--Inclusão das fontes customizadas-->
     <key>UIAppFonts</key>
     <array>
-      <string>Orbitron-Bold.ttf</string>
+      <string>Orbitron-Black.ttf</string>
       <string>Orbitron-Regular.ttf</string>
     </array>
   </dict>

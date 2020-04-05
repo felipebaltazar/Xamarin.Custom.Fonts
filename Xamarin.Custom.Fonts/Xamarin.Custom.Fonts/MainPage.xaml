@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xamarin.Custom.Fonts"
              mc:Ignorable="d"
              x:Class="Xamarin.Custom.Fonts.MainPage">
     <ContentPage.Resources>
@@ -17,7 +18,7 @@
         <!-- "OnPlatform" de resultado string, para retornar a fonte bold de cada plataforma-->
         <OnPlatform x:TypeArguments="x:String" x:Key="CustomFontBold">
             <On Platform="Android" Value="Orbitron-Bold.ttf#Orbitron Bold" />
-            <On Platform="iOS" Value="Orbitron-Bold" />
+            <On Platform="iOS" Value="Orbitron-Black" />
         </OnPlatform>
 
         <!-- Estilo base com definiçoes que outros estilos devem herdar -->
@@ -25,6 +26,18 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="HorizontalOptions" Value="Center"/>
             <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        </Style>
+
+        <!-- Estilo com fonte bold recurso inserido -->
+        <Style TargetType="Label" x:Key="MyBoldFontAwesomeLabelStyle" BasedOn="{StaticResource MyBaseLabelStyle}">
+            <Setter Property="FontFamily" Value="FontAwesomeBold"/>
+            <Setter Property="FontSize" Value="27"/>
+        </Style>
+
+        <!-- Estilo com fonte regular recurso inserido -->
+        <Style TargetType="Label" x:Key="MyRegularFontAwesomeLabelStyle" BasedOn="{StaticResource MyBaseLabelStyle}">
+            <Setter Property="FontFamily" Value="FontAwesomeRegular"/>
+            <Setter Property="FontSize" Value="27"/>
         </Style>
 
         <!-- Estilo com fonte regular (estatico melhor custo x beneficio) -->
@@ -66,6 +79,20 @@
         <Label Text="Welcome to Xamarin.Forms!"
                FontAttributes="Bold"
                Style="{StaticResource MyDynamicLabelStyle}"/>
+
+
+        <!-- Xamarin Forms 4.5.530+ -->
+        <!-- Usando fonte apenas no projeto compartilhado -->
+        <Label Text="{x:Static local:Icon.Child}"
+               Style="{StaticResource MyBoldFontAwesomeLabelStyle}" />
+
+        <!-- Xamarin Forms 4.5.530+ -->
+        <!-- Usando fonte apenas no projeto compartilhado -->
+        <Image>
+            <Image.Source>
+                <FontImageSource FontFamily="FontAwesomeBold" Color="Black" Glyph="&#xf007;"/>
+            </Image.Source>
+        </Image>
 
     </StackLayout>
 
